@@ -3,7 +3,13 @@
 import { Provider, Staker } from "@/lib/api/type";
 import { abbreviateAddress } from "@/lib/string";
 import { ColumnDef } from "@tanstack/react-table";
+import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const stakerColumns: ColumnDef<Staker>[] = [
   {
@@ -19,7 +25,9 @@ export const stakerColumns: ColumnDef<Staker>[] = [
     cell: ({ row }) => {
       return (
         <Link to={`/address/${row.original.staker_address}`}>
-          <span className="text-primary underline">{abbreviateAddress(row.original.staker_address)}</span>
+          <span className="text-primary underline">
+            {abbreviateAddress(row.original.staker_address)}
+          </span>
         </Link>
       );
     },
@@ -55,18 +63,51 @@ export const providerColumns: ColumnDef<Provider>[] = [
     accessorKey: "status",
     header: "Finality Provider",
     cell: ({ row }) => {
-      return <span>{row.original.description?.moniker}</span>;
+      return (
+        <span className="flex items-center">
+          {row.original.description?.moniker}
+          {row.original.description?.website && (
+            <ExternalLink
+              className="cursor-pointer w-[16px] ml-2 text-primary"
+              onClick={() => window.open(row.original.description?.website)}
+            />
+          )}
+        </span>
+      );
     },
   },
   {
     accessorKey: "staker_address",
     header: "BTC PK",
     cell: ({ row }) => {
-      return <span>{abbreviateAddress(row.original.eots_pk)}</span>;
+      return (
+        <Tooltip>
+          <TooltipTrigger>
+            {abbreviateAddress(row.original.eots_pk || "")}
+          </TooltipTrigger>
+          <TooltipContent>{row.original.eots_pk}</TooltipContent>
+        </Tooltip>
+      )
     },
   },
   {
     accessorKey: "total_delegations",
     header: "Total Delegation",
+    cell: ({ row }) => {
+      return <span>{row.original.total_delegations || 0} BTC</span>;
+    },
+  },
+  {
+    accessorKey: "staker_address",
+    header: "Commission",
+    cell: ({ row }) => {
+      return (
+        <span>
+          {row.original.commission
+            ? `${Number(row.original.commission) * 100}%`
+            : "--"}
+        </span>
+      );
+    },
   },
 ];

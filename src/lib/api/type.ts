@@ -238,6 +238,7 @@ export type Provider = {
     "details": string
   }
   rank?: number;
+  total_delegations?: number;
 }
 
 export type Staker = {
@@ -267,6 +268,7 @@ export type Delegation = {
   };
   is_overflow: boolean;
   staker_address?: string;
+  to_address?: string;
 };
 
 export type StakerDetail = {

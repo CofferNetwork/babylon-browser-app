@@ -31,13 +31,18 @@ const Explorer = () => {
   const { show, hide } = useLoading();
   const loading = useLoadingStore((state) => state.loading);
 
+  
+
   useEffect(() => {
+    window.scrollTo(0, 0)
+
     if (address && previousAddress && previousAddress !== address) {
       setStakerState(null);
       setPage({ pi: 1, pn, total: 0 });
       show();
     }
   }, [previousAddress, address]);
+
 
   useEffect(() => {
     if (address) {
@@ -117,7 +122,7 @@ const Explorer = () => {
                 </span>
                 <span className="text-[26px] w-full">
                   <Tooltip>
-                    <TooltipTrigger content="test"><p className="line-clamp-1 w-full">{stakerState?.finality_providers?.[0]|| '--'}...</p></TooltipTrigger>
+                    <TooltipTrigger><p className="line-clamp-1 w-full">{stakerState?.finality_providers?.[0]|| '--'}...</p></TooltipTrigger>
                     <TooltipContent>
                       <div className="text-[18px] space-y-1 px-2 py-4">{stakerState?.finality_providers?.map(item => <p>{item}</p>)}</div>
                     </TooltipContent>

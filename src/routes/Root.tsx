@@ -39,8 +39,8 @@ const Root = () => {
       <ToasterUI position="top-center" />
       <Nav />
 
-      <div className="flex flex-1 h-screen max-md:h-screen">
-        <div className="flex-1 min-w-[1120px] !pb-0 !pt-0 overflow-y-hidden overflow-x-hidden">
+      <div className="flex flex-1 min-h-screen overflow-auto">
+        <div className="flex-1 min-w-[1120px] !pb-0 !pt-0 overflow-x-hidden">
           <div className="h-full w-full relative overflow-y-auto pt-[60px] max-md:pt-0">
             <div className="h-[300px] items-center justify-center relative flex flex-col">
               <img
