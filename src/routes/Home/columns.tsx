@@ -78,7 +78,7 @@ export const providerColumns: ColumnDef<Provider>[] = [
   },
   {
     accessorKey: "staker_address",
-    header: "BTC PK",
+    header: "Provider PK",
     cell: ({ row }) => {
       return (
         <Tooltip>
