@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+  background-color: #131417;
+}
+
+.nav {
+  /* background: linear-gradient( 135deg, #BABABA 0%, #000000 100%); */
+  border-bottom: 1px solid #4F4F4F;
+}
+
+
+.tableBg  {
+  background-image: url("./assets/imgs/table_bg.png");
+  background-size: 100% 100%;
+}
