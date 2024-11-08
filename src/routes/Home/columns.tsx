@@ -10,6 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { satToBtc } from "@/lib/bitcoin/utils";
 
 export const stakerColumns: ColumnDef<Staker>[] = [
   {
@@ -33,8 +34,15 @@ export const stakerColumns: ColumnDef<Staker>[] = [
     },
   },
   {
+    accessorKey: "active_tvl",
+    header: "Total Staked Amount (BTC) ",
+    cell: ({ row }) => {
+      return <span>{ satToBtc(row.original.active_tvl || 0) }</span>;
+    },
+  },
+  {
     accessorKey: "active_delegations",
-    header: "Staked amount (BTC)",
+    header: "Total Delegation Times"
   },
   {
     accessorKey: "Points earned",
@@ -91,10 +99,17 @@ export const providerColumns: ColumnDef<Provider>[] = [
     },
   },
   {
-    accessorKey: "total_delegations",
-    header: "Total Delegation",
+    accessorKey: 'active_tvl',
+    header: 'Total Delegation Amount (BTC)',
     cell: ({ row }) => {
-      return <span>{row.original.total_delegations || 0} BTC</span>;
+      return <span>{ satToBtc(row.original.active_tvl || 0) }</span>;
+    },
+  },
+  {
+    accessorKey: "total_delegations",
+    header: "Total Delegation Times",
+    cell: ({ row }) => {
+      return <span>{row.original.total_delegations || 0}</span>;
     },
   },
   {
@@ -104,7 +119,7 @@ export const providerColumns: ColumnDef<Provider>[] = [
       return (
         <span>
           {row.original.commission
-            ? `${Number(row.original.commission) * 100}%`
+            ? `${(parseFloat((Number(row.original.commission) * 100).toFixed(2)))}%`
             : "--"}
         </span>
       );

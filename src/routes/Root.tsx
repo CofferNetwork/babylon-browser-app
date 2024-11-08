@@ -6,7 +6,7 @@ import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 import topBg from "@/assets/imgs/topBg.png";
 import Card from "@/components/Card";
 import "./root.less";
@@ -18,6 +18,8 @@ import { errorToast } from "@/components/Toast";
 const Root = () => {
   const { address: addressParam } = useParams();
   const navigate = useNavigate();
+
+  const isHome = location.hash === "#/";
   const [address, setAddress] = useState(addressParam);
   const loading = useLoadingStore((state) => state.loading);
 
@@ -42,6 +44,7 @@ const Root = () => {
       <div className="flex flex-1 min-h-screen overflow-auto">
         <div className="flex-1 min-w-[1120px] !pb-0 !pt-0 overflow-x-hidden">
           <div className="h-full w-full relative overflow-y-auto pt-[60px] max-md:pt-0">
+            {!isHome && <div className="max-w-[1360px] px-[40px] pt-[30px] absolute z-10"><ArrowLeft className="cursor-pointer" onClick={() => navigate(-1)} /></div>}
             <div className="h-[300px] items-center justify-center relative flex flex-col">
               <img
                 src={topBg}
@@ -75,6 +78,7 @@ const Root = () => {
               </Card>
             </div>
             <div className="max-w-[1360px] px-[40px] pb-[60px] mx-auto">
+            
               {loading && (
                 <div className="!absolute z-[100] !left-[50%] !top-[50%] !translate-x-[-50%] !translate-y-[-50%]">
                   <span className="loader"></span>

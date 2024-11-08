@@ -239,6 +239,7 @@ export type Provider = {
   }
   rank?: number;
   total_delegations?: number;
+  active_tvl?: number;
 }
 
 export type Staker = {

@@ -33,7 +33,7 @@ export const columns: ColumnDef<Delegation>[] = [
     cell({ row }) {
       return (
         <span className="bg-[#202124] flex items-center justify-center rounded-sm px-[10px] py-[3px]">
-          {row.original.state === "active" ? "Stake" : ""}
+          {row.original.state === "active" ? "Stake" : row.original.state}
         </span>
       );
     },

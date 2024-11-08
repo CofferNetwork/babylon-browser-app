@@ -116,7 +116,7 @@ const Explorer = () => {
                   {stakerState?.total_delegations}
                 </span>
               </div>
-              <div className="flex flex-col flex-1 space-y-[10px]">
+              <div className="flex flex-col flex-1 space-y-[10px] pr-[60px]">
                 <span className="text-[#666] text-[14px] leading-none">
                   Finality Provider
                 </span>
