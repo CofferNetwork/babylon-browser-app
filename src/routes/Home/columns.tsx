@@ -77,7 +77,13 @@ export const providerColumns: ColumnDef<Provider>[] = [
           {row.original.description?.website && (
             <ExternalLink
               className="cursor-pointer w-[16px] ml-2 text-primary"
-              onClick={() => window.open(row.original.description?.website)}
+              onClick={() => {
+                let url = row.original.description?.website;
+                if (url && !url?.startsWith('http')) {
+                  url = `https://${url}`;
+                }
+                window.open(url)
+              }}
             />
           )}
         </span>

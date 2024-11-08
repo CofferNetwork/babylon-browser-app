@@ -167,7 +167,7 @@ const Explorer = () => {
           <div className="ml-[20px]">
             <h3 className="font-ArialBold text-[24px] pt-[20px]">Overview</h3>
             <p className="text-muted-foreground">
-              Latest {pn} from a total of {page.total} transactions
+              Latest {page.total < pn ? page.total : pn} from a total of {page.total} transactions
             </p>
           </div>
           <div className="mt-[20px]">
